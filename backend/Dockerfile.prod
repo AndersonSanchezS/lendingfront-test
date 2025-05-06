@@ -1,0 +1,26 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Crear usuario no root
+RUN useradd -m -u 1000 appuser
+
+# Instalar dependencias
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código
+COPY . .
+
+# Configurar permisos
+RUN chown -R appuser:appuser /app
+
+# Cambiar a usuario no root
+USER appuser
+
+ENV FLASK_ENV=production
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 5000
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "app:app"] 
