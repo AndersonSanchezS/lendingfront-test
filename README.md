@@ -53,6 +53,8 @@ El flujo sería el siguiente:
 Usaría una base de datos híbrida: una instancia en una **RDBMS** y otra base de datos **NoSQL** para guardar datos no estructurados, obtenidos de integraciones con terceros (consultas de reportes de crédito, transacciones bancarias, reseñas de Yelp, etc.), así como logs o transacciones con la red ACH.
 
 > **Nota:** Las tablas no relacionadas corresponden a colecciones en la base de datos NoSQL.
+> ![Untitled(2)](https://github.com/user-attachments/assets/9455697b-0f95-4044-9457-dd81cb1c9294)
+
 
 ---
 
