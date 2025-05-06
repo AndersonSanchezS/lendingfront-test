@@ -69,7 +69,7 @@ Usaría una base de datos híbrida: una instancia en una **RDBMS** y otra base d
 # 4. Write a small application that simulates the application process. The information does not need to be stored in a database.
 **R/** la aplicacion se encuentra desplegada en la siguiente url : http://54.90.81.157/
 
-> **Nota:** Por cuestiones de tiempo no se realizo el despliegue en protocolo https por lo que se utilizo http en su lugar
+> **Nota:** Por cuestiones de tiempo no se realizo el despliegue en protocolo https por lo que se utilizo http en su lugar, el servicio se encuentra desplegados en AWS EC2
 
 # 5.Send to the interviewer the amount of time you spent doing the test, if different with the estimated time of point 1 explain the reason
 **R/** tiempo aproximado alrededor de 3 horas y media
