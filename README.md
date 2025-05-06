@@ -66,12 +66,10 @@ Usaría una base de datos híbrida: una instancia en una **RDBMS** y otra base d
 - **Almacenamiento en caché**: para reducir el número de consultas a la base de datos.
 - **Optimización de base de datos**: mejorar las consultas para reducir tiempos de respuesta.
 
-# 4. Write a small application that simulates the application process. The information does
-not need to be stored in a database.
+# 4. Write a small application that simulates the application process. The information does not need to be stored in a database.
 **R/** la aplicacion se encuentra desplegada en la siguiente url : http://54.90.81.157/
 
 > **Nota:** Por cuestiones de tiempo no se realizo el despliegue en protocolo https por lo que se utilizo http en su lugar
 
-# 5.Send to the interviewer the amount of time you spent doing the test, if different with the
-estimated time of point 1 explain the reason
+# 5.Send to the interviewer the amount of time you spent doing the test, if different with the estimated time of point 1 explain the reason
 **R/** tiempo aproximado alrededor de 3 horas y media
