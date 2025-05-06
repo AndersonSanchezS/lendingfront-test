@@ -9,6 +9,32 @@ function App() {
   })
   const [loanDecision, setLoanDecision] = useState(null)
   const [error, setError] = useState(null)
+  const [validationErrors, setValidationErrors] = useState({})
+
+  const validateForm = () => {
+    const errors = {}
+    
+    if (!formData.taxId.trim()) {
+      errors.taxId = 'El Tax ID es requerido'
+    } else if (formData.taxId.trim().length < 3) {
+      errors.taxId = 'El Tax ID debe tener al menos 3 caracteres'
+    }
+
+    if (!formData.businessName.trim()) {
+      errors.businessName = 'El nombre del negocio es requerido'
+    } else if (formData.businessName.trim().length < 3) {
+      errors.businessName = 'El nombre del negocio debe tener al menos 3 caracteres'
+    }
+
+    if (!formData.requestedAmount) {
+      errors.requestedAmount = 'El monto solicitado es requerido'
+    } else if (parseFloat(formData.requestedAmount) <= 0) {
+      errors.requestedAmount = 'El monto solicitado debe ser mayor a 0'
+    }
+
+    setValidationErrors(errors)
+    return Object.keys(errors).length === 0
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -16,11 +42,23 @@ function App() {
       ...prev,
       [name]: value
     }))
+    // Limpiar el error de validación cuando el usuario comienza a escribir
+    if (validationErrors[name]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError(null)
+    
+    if (!validateForm()) {
+      return
+    }
+
     try {
       const response = await axios.post('/api/evaluate-loan', {
         requestedAmount: parseFloat(formData.requestedAmount)
@@ -55,9 +93,13 @@ function App() {
                     value={formData.taxId}
                     onChange={handleChange}
                     placeholder="Ingrese su Tax ID"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className={`w-full px-4 py-2 border ${
+                      validationErrors.taxId ? 'border-red-500' : 'border-gray-300'
+                    } rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors`}
                   />
+                  {validationErrors.taxId && (
+                    <p className="mt-1 text-sm text-red-600">{validationErrors.taxId}</p>
+                  )}
                 </div>
 
                 <div>
@@ -70,9 +112,13 @@ function App() {
                     value={formData.businessName}
                     onChange={handleChange}
                     placeholder="Ingrese el nombre de su negocio"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className={`w-full px-4 py-2 border ${
+                      validationErrors.businessName ? 'border-red-500' : 'border-gray-300'
+                    } rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors`}
                   />
+                  {validationErrors.businessName && (
+                    <p className="mt-1 text-sm text-red-600">{validationErrors.businessName}</p>
+                  )}
                 </div>
 
                 <div>
@@ -85,9 +131,13 @@ function App() {
                     value={formData.requestedAmount}
                     onChange={handleChange}
                     placeholder="Ingrese el monto solicitado"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className={`w-full px-4 py-2 border ${
+                      validationErrors.requestedAmount ? 'border-red-500' : 'border-gray-300'
+                    } rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors`}
                   />
+                  {validationErrors.requestedAmount && (
+                    <p className="mt-1 text-sm text-red-600">{validationErrors.requestedAmount}</p>
+                  )}
                 </div>
               </div>
 
