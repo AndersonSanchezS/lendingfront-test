@@ -61,8 +61,8 @@ Usaría una base de datos híbrida: una instancia en una **RDBMS** y otra base d
 # 3. Imagine you need to scale the platform to increase 100x the current users: Which scalability techniques would you use?
 
 **R/**  
-- **Arquitectura de microservicios**: ya mencionada, permite escalar servicios individuales según necesidad.
-- **Escalado Horizontal**: añadir más instancias de los microservicios mediante balanceadores de carga.
+- **Arquitectura de microservicios**: Como se mencionó anteriormente, permite escalar de forma independiente cada servicio según la demanda.
+- **Escalado Horizontal**: añadir más instancias de los microservicios mediante balanceadores de carga para la gestion eficiente del trafico.
 - **Almacenamiento en caché**: para reducir el número de consultas a la base de datos.
 - **Optimización de base de datos**: mejorar las consultas para reducir tiempos de respuesta.
 
